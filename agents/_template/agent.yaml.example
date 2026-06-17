@@ -21,9 +21,10 @@ model: claude-sonnet-4-6
 # Obsidian integration (optional).
 # Assign folders from your vault so this agent auto-loads relevant context.
 # obsidian:
-#   vault: /path/to/your/obsidian/vault
+#   vault: /Users/demii-dieu/Documents/ClaudeClaw-Vault
 #   folders:
-#     - FolderA/
-#     - FolderB/
+#     - Inbox/
+#     - Projects/
+#     - Tasks/
 #   read_only:
 #     - Daily Notes/

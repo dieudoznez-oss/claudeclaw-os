@@ -61,7 +61,7 @@ const GLOBAL_STREAM_INTERVAL_MS = 2500;
 // ── Context window tracking ──────────────────────────────────────────
 // Uses input_tokens from the last API call (= actual context window size:
 // system prompt + conversation history + tool results for that call).
-// Compares against CONTEXT_LIMIT (default 1M for Opus 4.6 1M, configurable).
+// Compares against CONTEXT_LIMIT (default 1M for Opus 4.8 1M, configurable).
 //
 // On a fresh session the base overhead (system prompt, skills, CLAUDE.md,
 // MCP tools) can be 200-400k+ tokens. We track that baseline per session
@@ -123,7 +123,7 @@ const voiceEnabledChats = new Set<string>();
 const chatModelOverride = new Map<string, string>();
 
 const AVAILABLE_MODELS: Record<string, string> = {
-  opus: 'claude-opus-4-6',
+  opus: 'claude-opus-4-8',
   sonnet: 'claude-sonnet-4-5',
   haiku: 'claude-haiku-4-5',
 };
@@ -519,7 +519,7 @@ async function handleMessage(ctx: Context, message: string, forceVoiceReply = fa
   const userModel = chatModelOverride.get(chatIdStr) ?? agentDefaultModel;
   const effectiveModel = (SMART_ROUTING_ENABLED && !userModel && classifyMessageComplexity(message) === 'simple')
     ? SMART_ROUTING_CHEAP_MODEL
-    : (userModel ?? 'claude-opus-4-6');
+    : (userModel ?? 'claude-opus-4-8');
 
   // Start typing immediately, then refresh on interval
   await sendTyping(ctx.api, chatId);
